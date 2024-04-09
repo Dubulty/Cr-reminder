@@ -4,24 +4,25 @@
 //
 //  Created by Андрей Коновалов on 04.03.2024.
 //
-import UIKit
 
-class CellTwo: UITableViewCell {
-    static let identifier = "CellTwo"
+import UIKit
+import SnapKit
+
+class DateTimeCell: UITableViewCell {
+    static let identifier = "DateTimeCell"
     
-    var secondViewController: firstViewController?
+    var secondViewController: ReminderViewController?
     
-     lazy var sectionButton: UIButton = {
-      let button = UIButton()
+    lazy var sectionButton: UIButton = {
+        let button = UIButton()
         button.backgroundColor = UIColor(red: 241/255.0, green: 240/255.0, blue: 246/255.0, alpha: 255/255.0)
-      button.addTarget(
-       self, action: #selector(uttonTapped(_:)), for: .touchUpInside)
-      return button
+        button.addTarget(self, action: #selector(toggleCellButton(_:)), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private lazy var contentUIView: UIView = {
-      let UIView = UIView()
-        UIView.isHidden = false
+        let UIView = UIView()
         UIView.addSubview(remind)
         UIView.addSubview(remindSwich)
         UIView.addSubview(Repeat)
@@ -29,53 +30,57 @@ class CellTwo: UITableViewCell {
         UIView.addSubview(picker)
         UIView.addSubview(pickerLabel)
         UIView.addSubview(disclosureIndicatorImageView)
-      return UIView
+        UIView.translatesAutoresizingMaskIntoConstraints = false
+        return UIView
     }()
-
+    
     private lazy var stackView: UIStackView = {
-      let stackView = UIStackView()
-      stackView.axis = .vertical
-      stackView.addArrangedSubview(contentUIView)
-      stackView.addArrangedSubview(sectionButton)
-      return stackView
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.addArrangedSubview(contentUIView)
+        stackView.addArrangedSubview(sectionButton)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     // MARK: - content
     private lazy var disclosureIndicatorImageView: UIImageView = {
         let disclosureIndicator = UIImageView(image: UIImage(systemName: "chevron.right"))
-        disclosureIndicator.isHidden = false
         disclosureIndicator.tintColor = .gray
+        disclosureIndicator.translatesAutoresizingMaskIntoConstraints = false
         return disclosureIndicator
     }()
     
     private lazy var picker: UIDatePicker = {
         let picker = UIDatePicker()
-        picker.isHidden = false
         picker.preferredDatePickerStyle = .wheels
+        picker.date = Date()
+        picker.addTarget(self, action: #selector(pickerValueChanged(_:)), for: .valueChanged)
+        picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
     
     private lazy var pickerLabel: UILabel = {
         let pickerLabel = UILabel()
-        pickerLabel.isHidden = false
         pickerLabel.font = .systemFont(ofSize: 17, weight: .medium)
         pickerLabel.textColor = UIColor(red: 0/255.0, green: 112/255.0, blue: 201/255.0, alpha: 255/255.0)
+        pickerLabel.translatesAutoresizingMaskIntoConstraints = false
         return pickerLabel
     }()
     
     private lazy var Repeat: UILabel = {
         let Repeat = UILabel()
-        Repeat.isHidden = false
         Repeat.text = "Repeat"
+        Repeat.translatesAutoresizingMaskIntoConstraints = false
         return Repeat
     }()
     
     private lazy var never: UIButton = {
         let never = UIButton()
-        never.isHidden = false
         never.setTitle("Never", for: .normal)
         never.setTitleColor(.gray, for: .normal)
-        never.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        never.addTarget(self, action: #selector(goToNextViewController), for: .touchUpInside)
+        never.translatesAutoresizingMaskIntoConstraints = false
         return never
     }()
     
@@ -83,115 +88,120 @@ class CellTwo: UITableViewCell {
         let remind = UILabel()
         remind.text = "Remind me on a day"
         remind.font = .systemFont(ofSize: 17, weight: .medium)
-        remind.isHidden = false
+        remind.translatesAutoresizingMaskIntoConstraints = false
         return remind
     }()
     
     private lazy var remindSwich: UISwitch = {
         let remindSwich = UISwitch()
         remindSwich.isOn = true
-        remindSwich.isHidden = false
+        remindSwich.translatesAutoresizingMaskIntoConstraints = false
         return remindSwich
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier reuseIdenrifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdenrifier)
         self.setupUI()
+        selectionStyle = .none
         
-        picker.date = Date()
-        picker.addTarget(self, action: #selector(pickerValueChanged(_:)), for: .valueChanged)
         updateLabelDate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+extension DateTimeCell{
     
     private func setupUI() {
         
         self.contentView.addSubview(stackView)
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        pickerLabel.translatesAutoresizingMaskIntoConstraints = false
-        Repeat.translatesAutoresizingMaskIntoConstraints = false
-        never.translatesAutoresizingMaskIntoConstraints = false
-        remind.translatesAutoresizingMaskIntoConstraints = false
-        remindSwich.translatesAutoresizingMaskIntoConstraints = false
-        disclosureIndicatorImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        contentUIView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        sectionButton.translatesAutoresizingMaskIntoConstraints = false
+        stackView.snp.makeConstraints{make in
+            make.top.equalTo(contentView)
+            make.bottom.equalTo(contentView)
+            make.right.equalTo(contentView)
+            make.left.equalTo(contentView)
+        }
         
-        NSLayoutConstraint.activate([
-            stackView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            stackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            contentUIView.rightAnchor.constraint(equalTo: stackView.rightAnchor),
-            contentUIView.leftAnchor.constraint(equalTo: stackView.leftAnchor),
-            contentUIView.topAnchor.constraint(equalTo: stackView.topAnchor),
-            
-            sectionButton.rightAnchor.constraint(equalTo: stackView.rightAnchor),
-            sectionButton.leftAnchor.constraint(equalTo: stackView.leftAnchor),
-            sectionButton.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
-            
-            // consistent content
-            remind.topAnchor.constraint(equalTo: contentUIView.layoutMarginsGuide.topAnchor, constant: 14),
-            remind.leftAnchor.constraint(equalTo: contentUIView.leftAnchor, constant: 16),
-            remind.bottomAnchor.constraint(equalTo: pickerLabel.topAnchor,constant: -25),
-            
-            remindSwich.topAnchor.constraint(equalTo: contentUIView.layoutMarginsGuide.topAnchor, constant: 14),
-            remindSwich.rightAnchor.constraint(equalTo: contentUIView.layoutMarginsGuide.rightAnchor, constant: -16),
-            remindSwich.bottomAnchor.constraint(equalTo: pickerLabel.layoutMarginsGuide.topAnchor, constant: -25),
-            
-            pickerLabel.topAnchor.constraint(equalTo: remind.layoutMarginsGuide.bottomAnchor, constant: 25),
-            pickerLabel.leftAnchor.constraint(equalTo: contentUIView.layoutMarginsGuide.leftAnchor,constant: 8),
-            pickerLabel.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: 5),
-            
-            picker.topAnchor.constraint(equalTo: pickerLabel.bottomAnchor , constant: 1),
-            picker.leftAnchor.constraint(equalTo: contentUIView.leftAnchor, constant: 16),
-            picker.bottomAnchor.constraint(equalTo: Repeat.topAnchor,constant: -16),
-            
-            Repeat.topAnchor.constraint(equalTo: picker.bottomAnchor, constant: 5),
-            Repeat.leftAnchor.constraint(equalTo: contentUIView.leftAnchor, constant: 16),
-            Repeat.bottomAnchor.constraint(equalTo: contentUIView.bottomAnchor, constant: -16),
-            
-            never.topAnchor.constraint(equalTo: picker.bottomAnchor, constant: 5),
-            never.rightAnchor.constraint(equalTo: disclosureIndicatorImageView.leftAnchor,constant: -5),
-            never.bottomAnchor.constraint(equalTo: contentUIView.bottomAnchor, constant: -16),
-            
-            disclosureIndicatorImageView.topAnchor.constraint(equalTo: picker.bottomAnchor, constant: 12),
-            disclosureIndicatorImageView.leftAnchor.constraint(equalTo: never.rightAnchor, constant: 5),
-            disclosureIndicatorImageView.rightAnchor.constraint(equalTo: contentUIView.rightAnchor,constant: -10),
-            disclosureIndicatorImageView.bottomAnchor.constraint(equalTo: contentUIView.bottomAnchor, constant: -22),
-        ])
+        contentUIView.snp.makeConstraints{make in
+            make.top.equalTo(stackView)
+            make.right.equalTo(stackView)
+            make.left.equalTo(stackView)
+        }
+        
+        sectionButton.snp.makeConstraints{make in
+            make.bottom.equalTo(stackView)
+            make.right.equalTo(stackView)
+            make.left.equalTo(stackView)
+        }
+        
+        remind.snp.makeConstraints{make in
+            make.top.equalTo(contentUIView).offset(14)
+            make.left.equalTo(contentUIView).offset(16)
+            make.bottom.equalTo(pickerLabel.snp.top).offset(-25)
+        }
+        
+        remindSwich.snp.makeConstraints{make in
+            make.top.equalTo(contentUIView).offset(14)
+            make.bottom.equalTo(pickerLabel.snp.top).offset(-25)
+            make.right.equalTo(contentUIView).offset(-16)
+        }
+        
+        pickerLabel.snp.makeConstraints{make in
+            make.top.equalTo(remind.snp.bottom).offset(25)
+            make.bottom.equalTo(picker.snp.top).offset(-5)
+            make.left.equalTo(contentUIView).offset(16)
+        }
+        
+        picker.snp.makeConstraints{make in
+            make.top.equalTo(pickerLabel.snp.bottom).offset(1)
+            make.bottom.equalTo(Repeat.snp.top).offset(-16)
+            make.left.equalTo(contentUIView).offset(16)
+        }
+        
+        Repeat.snp.makeConstraints{make in
+            make.top.equalTo(picker.snp.bottom).offset(5)
+            make.bottom.equalTo(contentUIView).offset(-16)
+            make.left.equalTo(contentUIView).offset(16)
+        }
+        
+        never.snp.makeConstraints{make in
+            make.top.equalTo(picker.snp.bottom).offset(5)
+            make.bottom.equalTo(contentUIView).offset(-16)
+            make.right.equalTo(disclosureIndicatorImageView.snp.left).offset(-5)
+        }
+        
+        disclosureIndicatorImageView.snp.makeConstraints{make in
+            make.top.equalTo(picker.snp.bottom).offset(12)
+            make.bottom.equalTo(contentUIView).offset(-22)
+            make.left.equalTo(never.snp.right).offset(5)
+            make.right.equalTo(contentUIView).offset(-10)
+        }
     }
     
-    @objc private func uttonTapped(_ sender: UIButton) {
-        _ = contentUIView.isHidden
-      UIView.animate(
-       withDuration: 0.3, delay: 0, options: .curveEaseIn,
-        animations: {
-          self.contentUIView.subviews.forEach { $0.isHidden = !$0.isHidden }
-          self.contentUIView.isHidden = !self.contentUIView.isHidden
-      })
-    }
-    
-    func updateLabelDate(){
+    private func updateLabelDate(){
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
         pickerLabel.text = dateFormatter.string(from: picker.date)
     }
     
-    @IBAction func buttonTapped(_ sender: UIButton){
+    @objc private func pickerValueChanged(_ sender: UIDatePicker){
+        updateLabelDate()
+    }
+    
+    @IBAction private func goToNextViewController(_ sender: UIButton){
         secondViewController?.nextView()
     }
     
-    @objc func pickerValueChanged(_ sender: UIDatePicker){
-        updateLabelDate()
+    @objc private func toggleCellButton(_ sender: UIButton) {
+        UIView.animate(
+            withDuration: 0.3, delay: 0, options: .curveEaseIn,
+            animations: {
+                self.contentUIView.isHidden.toggle()
+                self.layoutIfNeeded()
+            })
     }
 }
-
 
