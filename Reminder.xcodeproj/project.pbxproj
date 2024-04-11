@@ -17,10 +17,10 @@
 		1BB54CC52B9212120046AF83 /* ReminderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CC42B9212120046AF83 /* ReminderTests.swift */; };
 		1BB54CCF2B9212130046AF83 /* ReminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CCE2B9212130046AF83 /* ReminderUITests.swift */; };
 		1BB54CD12B9212130046AF83 /* ReminderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CD02B9212130046AF83 /* ReminderUITestsLaunchTests.swift */; };
-		1BB54CED2B95F8A60046AF83 /* cellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CEC2B95F8A60046AF83 /* cellOne.swift */; };
-		1BB54CEF2B95F8C00046AF83 /* cellTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CEE2B95F8BF0046AF83 /* cellTwo.swift */; };
-		1BB54CF12B95F8CA0046AF83 /* cellThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CF02B95F8CA0046AF83 /* cellThree.swift */; };
-		1BB54CF72B95F9140046AF83 /* cellFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CF62B95F9140046AF83 /* cellFour.swift */; };
+		1BB54CED2B95F8A60046AF83 /* GetGroceriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CEC2B95F8A60046AF83 /* GetGroceriesCell.swift */; };
+		1BB54CEF2B95F8C00046AF83 /* DateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CEE2B95F8BF0046AF83 /* DateTimeCell.swift */; };
+		1BB54CF12B95F8CA0046AF83 /* LocationReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CF02B95F8CA0046AF83 /* LocationReminderCell.swift */; };
+		1BB54CF72B95F9140046AF83 /* PriorityNotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB54CF62B95F9140046AF83 /* PriorityNotesCell.swift */; };
 		3E1CA865FCCA1CE2167E58B1 /* Pods_Reminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F2583A366ED3E77B0AA0A1 /* Pods_Reminder.framework */; };
 		DE4C93A80239043C7E011D8C /* Pods_Reminder_ReminderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4F998C421A5D563D7735EF /* Pods_Reminder_ReminderUITests.framework */; };
 /* End PBXBuildFile section */
@@ -59,10 +59,10 @@
 		1BB54CCA2B9212130046AF83 /* ReminderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReminderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BB54CCE2B9212130046AF83 /* ReminderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderUITests.swift; sourceTree = "<group>"; };
 		1BB54CD02B9212130046AF83 /* ReminderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		1BB54CEC2B95F8A60046AF83 /* cellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellOne.swift; sourceTree = "<group>"; };
-		1BB54CEE2B95F8BF0046AF83 /* cellTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellTwo.swift; sourceTree = "<group>"; };
-		1BB54CF02B95F8CA0046AF83 /* cellThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellThree.swift; sourceTree = "<group>"; };
-		1BB54CF62B95F9140046AF83 /* cellFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellFour.swift; sourceTree = "<group>"; };
+		1BB54CEC2B95F8A60046AF83 /* GetGroceriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroceriesCell.swift; sourceTree = "<group>"; };
+		1BB54CEE2B95F8BF0046AF83 /* DateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCell.swift; sourceTree = "<group>"; };
+		1BB54CF02B95F8CA0046AF83 /* LocationReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationReminderCell.swift; sourceTree = "<group>"; };
+		1BB54CF62B95F9140046AF83 /* PriorityNotesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityNotesCell.swift; sourceTree = "<group>"; };
 		4014EABC0AE09EF598042C7F /* Pods-Reminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reminder.debug.xcconfig"; path = "Target Support Files/Pods-Reminder/Pods-Reminder.debug.xcconfig"; sourceTree = "<group>"; };
 		8C85FC123A06DCA322CDE3FD /* Pods-Reminder-ReminderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reminder-ReminderUITests.release.xcconfig"; path = "Target Support Files/Pods-Reminder-ReminderUITests/Pods-Reminder-ReminderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ED4F998C421A5D563D7735EF /* Pods_Reminder_ReminderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reminder_ReminderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,10 +172,10 @@
 		1BB54CDD2B95F7F60046AF83 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				1BB54CEC2B95F8A60046AF83 /* cellOne.swift */,
-				1BB54CEE2B95F8BF0046AF83 /* cellTwo.swift */,
-				1BB54CF02B95F8CA0046AF83 /* cellThree.swift */,
-				1BB54CF62B95F9140046AF83 /* cellFour.swift */,
+				1BB54CEC2B95F8A60046AF83 /* GetGroceriesCell.swift */,
+				1BB54CEE2B95F8BF0046AF83 /* DateTimeCell.swift */,
+				1BB54CF02B95F8CA0046AF83 /* LocationReminderCell.swift */,
+				1BB54CF62B95F9140046AF83 /* PriorityNotesCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -200,7 +200,6 @@
 				FB63893BBE41915E2C854A50 /* Pods-ReminderTests.debug.xcconfig */,
 				0E69046C2FFBA86095F57E56 /* Pods-ReminderTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -442,14 +441,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BB54CF12B95F8CA0046AF83 /* cellThree.swift in Sources */,
+				1BB54CF12B95F8CA0046AF83 /* LocationReminderCell.swift in Sources */,
 				1BB54CB22B9212110046AF83 /* ReminderViewController.swift in Sources */,
 				1BB54CAE2B9212110046AF83 /* AppDelegate.swift in Sources */,
-				1BB54CF72B95F9140046AF83 /* cellFour.swift in Sources */,
+				1BB54CF72B95F9140046AF83 /* PriorityNotesCell.swift in Sources */,
 				1BB251A52B97934E00429F7E /* SecondViewController.swift in Sources */,
-				1BB54CED2B95F8A60046AF83 /* cellOne.swift in Sources */,
+				1BB54CED2B95F8A60046AF83 /* GetGroceriesCell.swift in Sources */,
 				1BB54CB02B9212110046AF83 /* SceneDelegate.swift in Sources */,
-				1BB54CEF2B95F8C00046AF83 /* cellTwo.swift in Sources */,
+				1BB54CEF2B95F8C00046AF83 /* DateTimeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
